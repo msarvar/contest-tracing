@@ -22,7 +22,7 @@ module "security_group" {
   for_each = local.vpcs
   source   = "terraform-aws-modules/security-group/aws"
 
-  name        = "secgrp{each.value}"
+  name        = "secgrp${each.value}"
   description = "Complete SqlServer example security group"
   vpc_id      = module.vpc[each.value].vpc_id
 

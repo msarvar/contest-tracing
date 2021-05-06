@@ -7,11 +7,7 @@ terraform-plan: terraform-init
 terraform-plan-json: terraform-plan
 	cd tf-project; terraform show -json tfplan.out > ../tfplan.json
 
-fetch-regula: terraform-plan-json
+setup: terraform-plan-json
 	conftest pull -p policy/ github.com/fugue/regula/conftest
 	conftest pull -p policy/regula/lib 'github.com/fugue/regula//lib'
 	conftest pull -p policy/regula/rules github.com/fugue/regula/rules
-
-setup: fetch-regula
-	conftest
-
